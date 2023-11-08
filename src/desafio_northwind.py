@@ -1,4 +1,5 @@
 import psycopg2
+import pandas as pd
 
 
 params = {
@@ -19,14 +20,10 @@ def run_queries(params, commands):
         cur = conn.cursor()
         # Run Queries one by one
         for command in commands:
-            print("Executing command: %s" % command)
-            cur.execute(command)
-            resultado = cur.fetchall()
-            #print("Returning result: %s" % resultado)
-            #print("--------------------------------")
-
-            with open('./output.txt', 'w') as arquivo:
-                arquivo.write(str(resultado[:][:]))
+            
+            df = pd.read_sql_query(command, conn)
+            df.to_csv('/usr/src/app/output.csv')
+            
 
         # close communication with the PostgreSQL database server
         cur.close()

@@ -27,7 +27,7 @@ services:
       context: src 
       dockerfile: ./Dockerfile 
     volumes:
-    - /home/isac/Documentos/learning docker/code-challenge/src/output.txt:/usr/src/app/output.txt
+    - /home/isac/Documentos/learning docker/code-challenge/src:/usr/src/app
     networks:
       - isac_net
     
