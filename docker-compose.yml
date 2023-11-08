@@ -16,6 +16,8 @@ services:
       - ./data/northwind.sql:/docker-entrypoint-initdb.d/northwind.sql
     ports:
       - 5432:5432
+    networks:
+      - isac_net
 
 
   python-container:
@@ -24,11 +26,12 @@ services:
     build:
       context: src 
       dockerfile: ./Dockerfile 
+    volumes:
+    - /home/isac/Documentos/learning docker/code-challenge/src/output.txt:/usr/src/app/output.txt
     networks:
       - isac_net
     
-  
- 
+
     
   
 

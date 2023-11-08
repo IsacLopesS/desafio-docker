@@ -6,5 +6,6 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY desafio_northwind.py .
+COPY output.txt .
 
 CMD [ "python", "desafio_northwind.py" ]

@@ -2,7 +2,7 @@ import psycopg2
 
 
 params = {
-    #"host": 'localhost',
+    "host": 'dbpostgres',
     "database": 'postgres',
     "user": 'postgres',
     "port": 5432,
@@ -21,8 +21,12 @@ def run_queries(params, commands):
         for command in commands:
             print("Executing command: %s" % command)
             cur.execute(command)
-            print("Returning result: %s" % cur.fetchall())
-            print("--------------------------------")
+            resultado = cur.fetchall()
+            #print("Returning result: %s" % resultado)
+            #print("--------------------------------")
+
+            with open('./output.txt', 'w') as arquivo:
+                arquivo.write(str(resultado[:][:]))
 
         # close communication with the PostgreSQL database server
         cur.close()
